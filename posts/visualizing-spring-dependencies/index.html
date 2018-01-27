@@ -1,0 +1,245 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>JOSH&#39;S BLOG</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="Joshua White" />
+  <meta name="generator" content="Hugo 0.34" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="http://joshuawhite.com/css/styles.css" />
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="http://joshuawhite.com/">JOSH&rsquo;S BLOG</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        <li><a href="https://twitter.com/joshuawhite929"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://www.linkedin.com/in/joshuawhite929"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/joshuawhite929"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+        <li><a href="https://instagram.com/joshuawhite929"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a></li>
+        
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="http://joshuawhite.com/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="http://joshuawhite.com/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Visualizing Spring Dependencies</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2017-03-04T00:00:00-05:00">Mar 4, 2017</time>
+        </li>
+        
+        
+        <li>
+            Categories: 
+            <em>
+                
+                    
+                    <a href="http://joshuawhite.com/categories/spring/">spring</a>
+                
+                    , 
+                    <a href="http://joshuawhite.com/categories/graphviz/">graphviz</a>
+                
+                    , 
+                    <a href="http://joshuawhite.com/categories/kotlin/">kotlin</a>
+                
+            </em>
+        </li>
+        
+
+        
+
+        <li>2 min read</li>
+    </ul>
+</aside>
+    
+
+    
+
+<p>Over the last couple of months, I have been playing with <a href="https://kotlinlang.org">Kotlin</a> in my spare time.  To get a better feel for the language, I decided to implement a small program that reads through a POM file and diagrams all of its dependencies using <a href="http://www.graphviz.org">Graphviz</a> and dot.</p>
+
+<p>With the exception of one, the dependencies in the images below only include <a href="https://spring.io">Spring</a> dependencies (com.springframework.*, io.spring.*).  The &ldquo;unfiltered&rdquo; example below is included only to show what this looks like.  This has helped me better visualize how the various projects reference each other.  For example, these diagrams changed how I thought the <a href="http://platform.spring.io/platform/">Spring IO Platform</a> was used.  Instead of having projects like <a href="http://projects.spring.io/spring-boot/">Spring Boot</a> align with a specific version of the <a href="http://platform.spring.io/platform/">Spring IO Platform</a>, you can see from the diagram below that <a href="http://projects.spring.io/spring-boot/">Spring Boot</a> drives the <a href="http://platform.spring.io/platform/">Spring IO Platform</a>.</p>
+
+<p>As you can imagine, I now have a whole new appreciation for the shenanigans that maven/gradle need to go through to derive dependencies.</p>
+
+<p><em>Note:</em> Click the images below for a larger version.</p>
+
+<p><em><strong>Legend:</strong></em></p>
+
+<ul>
+<li><strong>Fill Color</strong>
+
+<ul>
+<li><em>Green</em> - This node is where the graph starts</li>
+<li><em>Orange</em> - This is a regular Project Object Model (POM) file</li>
+<li><em>Blue</em> - This is a Bill of Materials (BOM) file</li>
+</ul></li>
+<li><strong>Arrows</strong>
+
+<ul>
+<li><em>Solid Line, Open Arrow</em> - This arrow points to a given POM files parent</li>
+<li><em>Dashed Line, Solid Arrow</em> - This arrow indicates a &ldquo;dependency&rdquo; relationship</li>
+<li><em>Dotted Line, Inverse Arrow</em> - This arrow indicates that a POM was imported into the Dependency Management section of another POM</li>
+</ul></li>
+<li><strong>Label</strong>
+
+<ul>
+<li><em>Normal Text Label</em> - This indicates the POM&rsquo;s artifactId</li>
+<li><em>[Bracketed Text Label]</em> - If this artifactId is dependency managed, this value indicates where this is specified</li>
+</ul></li>
+</ul>
+
+<h3 id="spring-io-platform">Spring IO Platform</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/io.spring.platform_platform-bom_Brussels-RELEASE.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/io.spring.platform_platform-bom_Brussels-RELEASE.png" alt="Spring IO Platform" /></a></p>
+
+<h3 id="spring-boot-starter-parent">spring-boot-starter-parent</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.boot_spring-boot-starter-parent_1.5.1.RELEASE.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.boot_spring-boot-starter-parent_1.5.1.RELEASE.png" alt="spring-boot-starter-parent" /></a></p>
+
+<h3 id="spring-boot-starter-web">spring-boot-starter-web</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.boot_spring-boot-starter-web_1.5.1.RELEASE.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.boot_spring-boot-starter-web_1.5.1.RELEASE.png" alt="spring-boot-starter-web" /></a></p>
+
+<h3 id="spring-boot-starter-web-unfiltered">spring-boot-starter-web (unfiltered)</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.boot_spring-boot-starter-web_1.5.1.RELEASE_unfiltered.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.boot_spring-boot-starter-web_1.5.1.RELEASE_unfiltered.png" alt="spring-boot-starter-web (unfiltered)" /></a></p>
+
+<h3 id="spring-cloud">Spring Cloud</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.cloud_spring-cloud-dependencies_Camden.SR5.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.cloud_spring-cloud-dependencies_Camden.SR5.png" alt="Spring Cloud" /></a></p>
+
+<h3 id="spring-cloud-netflix">Spring Cloud Netflix</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.cloud_spring-cloud-netflix_1.2.4.RELEASE.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework.cloud_spring-cloud-netflix_1.2.4.RELEASE.png" alt="Spring Cloud Netflix" /></a></p>
+
+<h3 id="spring-framework">Spring Framework</h3>
+
+<p><a href="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework_spring-context_4.3.6.RELEASE.png"><img src="http://joshuawhite.com/images/visualizing-spring-dependencies/org.springframework_spring-context_4.3.6.RELEASE.png" alt="Spring Framework" /></a></p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="http://joshuawhite.com/posts/moving-my-blog-to-hugo/"><i class="fa fa-chevron-circle-left"></i> Moving My Blog to Hugo</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments-o"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'joshuawhite929';
+            var disqus_button = document.getElementById("show-comments");
+
+            disqus_button.style.display = "";
+            disqus_button.addEventListener("click", disqus, false);
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright &copy; 2018 - Joshua White | 
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="http://joshuawhite.com/index.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="http://joshuawhite.com/js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on JOSH&#39;S BLOG</title>
+    <link>http://joshuawhite.com/categories/hugo/</link>
+    <description>Recent content in Hugo on JOSH&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright &amp;copy; 2018 - Joshua White</copyright>
+    <lastBuildDate>Sat, 10 Sep 2016 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="http://joshuawhite.com/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Moving My Blog to Hugo</title>
+      <link>http://joshuawhite.com/posts/moving-my-blog-to-hugo/</link>
+      <pubDate>Sat, 10 Sep 2016 00:00:00 -0400</pubDate>
+      
+      <guid>http://joshuawhite.com/posts/moving-my-blog-to-hugo/</guid>
+      <description>I recently moved my blog to Hugo based on a the recommendation of a colleague. Its been so long since I have written a blog post (2 years!) that I didn&amp;rsquo;t bother to convert my old content.</description>
+    </item>
+    
+  </channel>
+</rss>
